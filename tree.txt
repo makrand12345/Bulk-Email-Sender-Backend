@@ -1,0 +1,24 @@
+README.md
+.env
+requirements.txt
+app/
+    __init__.py
+    main.py
+    api/
+        v1/
+            __init__.py
+            campaign.py
+            health.py
+    core/
+        config.py
+        security.py
+    db/
+        __init__.py
+        mongo.py
+    models/
+        campaign.py
+        recipient.py
+    services/
+        email_service.py
+        utm_engine.py
+    utils/ (empty)
