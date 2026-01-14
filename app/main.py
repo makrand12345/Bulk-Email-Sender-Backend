@@ -26,11 +26,13 @@ app = FastAPI(title=settings.PROJECT_NAME, lifespan=lifespan)
 # CORS Configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://email-campaign-manager-frontend.vercel.app/",""],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
 
 # Request Logging Middleware
 @app.middleware("http")
