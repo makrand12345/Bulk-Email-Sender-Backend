@@ -13,14 +13,13 @@ except Exception:
 
 class Settings(BaseSettings):
     MONGO_URI: str
-    SMTP_HOST: str
-    SMTP_PORT: int
-    SMTP_USER: str
-    SMTP_PASSWORD: str
+    RESEND_API_KEY: str
+    FROM_EMAIL: str
     PROJECT_NAME: str
 
     class Config:
         env_file = ".env"
+
 
 
 try:

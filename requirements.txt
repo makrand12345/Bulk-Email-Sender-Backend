@@ -6,3 +6,4 @@ pydantic-settings
 python-dotenv
 beautifulsoup4
 python-multipart
+resend
