@@ -7,27 +7,28 @@ from app.utils.csv_parser import parse_recipient_csv
 router = APIRouter()
 
 
+# ✅ PREVIEW SHOULD NEVER FAIL
 @router.post("/preview")
 async def preview_email(
-    company_name: str = Form(...),
-    header_title: str = Form(...),
-    title: str = Form(...),
-    body: str = Form(...),
-    footer: str = Form(...)
+    company_name: str = Form("Your Company"),
+    header_title: str = Form("Campaign Preview"),
+    title: str = Form("Email Title"),
+    body: str = Form("This is a preview of your email content."),
+    footer: str = Form("This is an auto generated email. Please do not reply.")
 ):
     dummy_user = {
         "name": "John Doe",
         "role": "Frontend Developer",
-        "company": company_name
+        "company": company_name or "Your Company"
     }
 
     html = TemplateService.render_template(
         {
-            "company_name": company_name,
-            "header_title": header_title,
-            "title": title,
-            "body": body,
-            "footer": footer
+            "company_name": company_name or "Your Company",
+            "header_title": header_title or "Campaign Preview",
+            "title": title or "Email Title",
+            "body": body or "This is a preview of your email content.",
+            "footer": footer or "This is an auto generated email. Please do not reply."
         },
         dummy_user
     )
@@ -35,6 +36,7 @@ async def preview_email(
     return {"html": html}
 
 
+# 🔒 SEND BULK SHOULD REMAIN STRICT
 @router.post("/send-bulk")
 async def send_bulk(
     company_name: str = Form(...),
